@@ -2,7 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import { navCategory, navLinks } from "../constants";
 import { Link } from "react-router-dom";
 import logo from "../assets/phonefy_dark.svg";
-import { BiCloset, BiCross, BiMenu, BiMenuAltLeft, BiSearch } from "react-icons/bi";
+import {
+  BiCloset,
+  BiCross,
+  BiMenu,
+  BiMenuAltLeft,
+  BiSearch,
+} from "react-icons/bi";
 import { gsap } from "gsap";
 
 const Header = () => {
@@ -73,13 +79,32 @@ const Header = () => {
             ))}
           </div>
           <div className="max-lg:flex hidden w-full h-full fixed bg-black top-0 left-0">
-            <div className="w-1/2 bg-white relative px-10 py-20 gap-8 flex flex-col text-24px">
-            <span className="absolute right-10 top-4" >
-            <svg width="24" height="24"  fill="none" xmlns="http://www.w3.org/2000/svg">
-            <line x1="8" y1="8" x2="16" y2="16" stroke="black" strokeWidth="2"/>
-            <line x1="8" y1="16" x2="16" y2="8" stroke="black" strokeWidth="2"/>
-          </svg>
-          </span>
+            <div className="w-1/2 max-sm:w-2/3 bg-white relative px-10 py-20 gap-8 flex flex-col text-24px">
+              <span className="absolute right-10 top-4">
+                <svg
+                  width="24"
+                  height="24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <line
+                    x1="8"
+                    y1="8"
+                    x2="16"
+                    y2="16"
+                    stroke="black"
+                    strokeWidth="2"
+                  />
+                  <line
+                    x1="8"
+                    y1="16"
+                    x2="16"
+                    y2="8"
+                    stroke="black"
+                    strokeWidth="2"
+                  />
+                </svg>
+              </span>
               {navCategory.map((item) => (
                 <Link
                   key={item.label}
