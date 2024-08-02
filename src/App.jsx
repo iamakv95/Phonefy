@@ -6,7 +6,7 @@ import {
   Route,
 } from "react-router-dom";
 
-import { Home, Cart, Error } from "./pages";
+import { Home, Cart, Error ,Search } from "./pages";
 import { MainLayout } from "./layouts";
 
 const App = () => {
@@ -15,6 +15,7 @@ const App = () => {
       <Route path="/" element={<MainLayout />}>
         <Route index element={<Home />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/search" element={<Search />} />
         <Route path="*" element={<Error />} />
       </Route>
     )

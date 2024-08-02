@@ -1,11 +1,16 @@
-import React from 'react'
+import React from "react";
+import {FooterNewsletter,FooterFeatures,FooterMenus,FooterCopyright } from "../components"
+
 
 const Footer = () => {
   return (
-    <div>
-      <h1>Footer</h1>
-    </div>
-  )
-}
+    <footer className="flex flex-col items-center justify-center font-outfit">
+     <FooterNewsletter/>
+     <FooterFeatures/>
+     <FooterMenus/>
+     <FooterCopyright/>
+    </footer>
+  );
+};
 
-export default Footer
+export default Footer;
