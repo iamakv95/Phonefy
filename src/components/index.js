@@ -7,6 +7,9 @@ import FooterNewsletter from "./FooterNewsletter";
 import MobileMenu from "./MobileMenu";
 import HeaderSearch from "./HeaderSearch";
 import ProductSlider from "./ProductSlider";
+import HeroSlideCard from "../components/cards/HeroSlideCard";
+import ProductCard from "../components/cards/ProductCard";
+import ProductImageCard from "../components/cards/ProductImageCard";
 
 export {
   Header,
@@ -18,4 +21,7 @@ export {
   FooterMenus,
   FooterCopyright,
   ProductSlider,
+  ProductCard,
+  HeroSlideCard,
+  ProductImageCard,
 };
