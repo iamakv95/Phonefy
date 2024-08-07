@@ -1,5 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-
 import { targetAPI } from './services/targetAPI';
 
 export const store = configureStore({

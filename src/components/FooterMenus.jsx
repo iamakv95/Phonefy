@@ -1,4 +1,4 @@
-import gsap from "gsap";
+import {gsap} from "gsap";
 import React from "react";
 import { footerLinks, socialMedia } from "../constants";
 import { Link } from "react-router-dom";

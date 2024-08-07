@@ -1,27 +1,47 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-// Define your API slice
 export const targetAPI = createApi({
-  reducerPath: 'targetAPI',
+  reducerPath: "targetAPI",
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://target1.p.rapidapi.com/',
+    baseUrl: "https://target1.p.rapidapi.com/",
     prepareHeaders: (headers) => {
-      headers.set('X-RapidAPI-Key', import.meta.env.VITE_TARGET_RAPID_API_KEY);
+      headers.set("X-RapidAPI-Key", import.meta.env.VITE_TARGET_RAPID_API_KEY);
       return headers;
     },
   }),
   endpoints: (builder) => ({
-    getAllProducts: builder.query({ query: () => 'categories/v2/list' }),
-    getAllReviews: builder.query({ query: () => 'reviews/v2/list' }),
-    getAllCategories: builder.query({ query: () => 'products/v2/list' }),
-    getProductsByCategory: builder.query({ query: (category) => `categories/v2/list?category=${category}` }),
-    getProductBySearch: builder.query({ query: (searchTerm) => `auto-complete?q=${searchTerm}` }),
+    getAllProducts: builder.query({
+      query: () =>
+        "products/v2/list?store_id=911&category=5xtg6&count=20&offset=0&default_purchasability_filter=true&sort_by=relevance",
+      transformResponse: (response) => {
+        return response;
+      },
+    }),
+    getFeaturedProducts: builder.query({
+      query: () => "/products/v2/list-recommended?tcins=54191097&store_id=911",
+      transformResponse: (response) => {
+        return response;
+      },
+    }),
+    getAllReviews: builder.query({ query: () => "reviews/v2/list" }),
+    getAllCategories: builder.query({ query: () => "categories/v2/list",
+      transformResponse: (response) => {
+        console.log("category Response:", response);
+        return response;
+      },
+     }),
+    getProductsByCategory: builder.query({
+      query: (category) => `categories/v2/list?category=${category}`,
+    }),
+    getProductBySearch: builder.query({
+      query: (searchTerm) => `auto-complete?q=${searchTerm}`,
+    }),
   }),
 });
 
-// Export hooks for usage in functional components
 export const {
   useGetAllProductsQuery,
+  useGetFeaturedProductsQuery,
   useGetAllReviewsQuery,
   useGetAllCategoriesQuery,
   useGetProductsByCategoryQuery,

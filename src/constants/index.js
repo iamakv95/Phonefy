@@ -1,5 +1,4 @@
 import {
-  BiSupport,
   BiHeart,
   BiLogoFacebook,
   BiLogoTwitter,
@@ -9,7 +8,14 @@ import {
   BiUser,
 } from "react-icons/bi";
 
-import { fast, quickReturn , support} from "../assets";
+import {
+  home_featured_1,
+  home_featured_2,
+  home_featured_3,
+  home_featured_4,
+} from "../assets";
+
+import { fast, quickReturn, support } from "../assets";
 
 export const navLinks = [
   { iconURL: BiUser, href: "", label: "Account" },
@@ -30,29 +36,57 @@ export const newsletter = {
   titlebottom: "  Get recommendations, tips, updates, promotions and more.",
 };
 
+export const featuredOffer = [
+  {
+    id: "1",
+    imageURL: home_featured_4,
+    href: "/",
+    title: "Save up to $50 on selected ipads & tablets",
+    btnTitle: "Shop Now",
+  },
+  {
+    id: "2",
+    imageURL: home_featured_3,
+    href: "/",
+    title: "Save up to 35% on furniture items",
+    btnTitle: "Shop Now",
+  },
+  {
+    id: "3",
+    imageURL: home_featured_2,
+    href: "/",
+    title: "Save up to $50 on select fragrances",
+    btnTitle: "Shop Now",
+  },
+  {
+    id: "4",
+    imageURL: home_featured_1,
+    href: "/",
+    title: "Save up to 20% on footwear",
+    btnTitle: "Shop Now",
+  },
+];
+
 export const footerFeatures = [
   {
     iconURL: fast,
     href: "/",
     title: "Fast, Free Shipping",
-    descr:
-      "Free shipping on every order above $200.",
+    descr: "Free shipping on every order above $200.",
     btnTitle: "Learn More",
   },
   {
     iconURL: quickReturn,
     href: "/",
     title: "Worry-Free Returns",
-    descr:
-      "Return your purchase for free within 7 days.",
+    descr: "Return your purchase for free within 7 days.",
     btnTitle: "Learn More",
   },
   {
     iconURL: support,
     href: "/",
     title: "24/7 Support",
-    descr:
-      "Want to talk? Choose chat or call us.",
+    descr: "Want to talk? Choose chat or call us.",
     btnTitle: "Get Support",
   },
 ];

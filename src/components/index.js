@@ -10,6 +10,7 @@ import ProductSlider from "./ProductSlider";
 import HeroSlideCard from "../components/cards/HeroSlideCard";
 import ProductCard from "../components/cards/ProductCard";
 import ProductImageCard from "../components/cards/ProductImageCard";
+import RatingsCard from "../components/cards/RatingsCard";
 
 export {
   Header,
@@ -23,5 +24,5 @@ export {
   ProductSlider,
   ProductCard,
   HeroSlideCard,
-  ProductImageCard,
+  ProductImageCard,RatingsCard
 };

@@ -27,8 +27,6 @@
 .swiper-button-next {
   background-color: red;
   padding: 20px;
-  width: 35px;
-  height: 35px;
   right: 10px;
   border-radius: 100%;
   color: black;
@@ -45,9 +43,20 @@
 
 .product_card .swiper-button-prev,
 .product_card .swiper-button-next {
-  background-color: transparent;
-  padding: 15px;
+  background-color: #fedfdc;
+  padding: 5px;
   border-radius: 100%;
   color: black;
   box-shadow: none;
+  width: 20px;
+  height: 20px;
 }
+
+
+.product_card .swiper-button-prev::after,
+.product_card .swiper-button-next:after {
+  font-size: 12px;
+  object-fit: contain;
+}
+
+.swiper-button-disabled {display: none;}
