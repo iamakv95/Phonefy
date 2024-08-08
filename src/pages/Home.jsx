@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   useGetAllProductsQuery,
   useGetAllCategoriesQuery,
 } from "../redux/services/targetAPI";
-import { ProductCard, ProductSlider } from "../components";
-import { featuredOffer } from "../constants";
+import {
+  HomeSlider,
+  OfferCard,
+  ProductCard,
+  ProductOfferCard,
+  ProductSlider,
+} from "../components";
+import { featuredOffer, ctaOffer, giftOffer } from "../constants";
 
 const Home = () => {
   const {
@@ -24,11 +30,33 @@ const Home = () => {
   const categories =
     allCategoriesData?.slots?.[1200]?.content.taxonomy_nodes || [];
 
-  console.log("category data", categories);
-  console.log("products data", products);
+  const [currentProduct, setCurrentProduct] = useState(null);
+
+  useEffect(() => {
+    if (products.length > 0) {
+      const intervalId = setInterval(() => {
+        const randomIndex = Math.floor(Math.random() * products.length);
+        setCurrentProduct(products[randomIndex]);
+      }, 6500); 
+      const randomIndex = Math.floor(Math.random() * products.length);
+      setCurrentProduct(products[randomIndex]);
+      return () => clearInterval(intervalId);
+    }
+  }, [products]);
+  
 
   return (
     <>
+      <section className="mb-16 mt-4 h-[75vh]">
+        <div className="container flex items-center gap-6 font-outfit h-full">
+          <div className="home_slider relative w-2/3 h-full rounded-lg">
+            <HomeSlider />
+          </div>
+          <div className="w-1/3 items-center justify-center border border-gray border-opacity-15 flex shadow-md h-full rounded-lg p-10">
+            {currentProduct && <ProductOfferCard product={currentProduct} />}
+          </div>
+        </div>
+      </section>
       <section className="mb-16">
         <div className="container flex items-center justify-between font-outfit">
           <h1 className="text-28px font-medium capitalize text-black">
@@ -41,7 +69,7 @@ const Home = () => {
             See All Products
           </Link>
         </div>
-        <div className="container mt-10">
+        <div className="container mt-10 popular_products">
           {allProductsLoading ? (
             <p>Loading products...</p>
           ) : allProductsError ? (
@@ -51,7 +79,12 @@ const Home = () => {
           )}
         </div>
       </section>
-
+      <section className="mb-16">
+        <OfferCard
+          details={giftOffer}
+          customCSS="flex bg-cover bg-no-repeat flex-col py-12 items-center justify-center rounded-md "
+        />
+      </section>
       <section className="mb-16">
         <div className="container flex items-center justify-between font-outfit">
           <h1 className="text-28px font-medium capitalize text-black">
@@ -131,7 +164,12 @@ const Home = () => {
           )}
         </div>
       </section>
-
+      <section className="mb-16">
+        <OfferCard
+          details={ctaOffer}
+          customCSS="flex bg-cover bg-no-repeat flex-col py-12 justify-center rounded-md "
+        />
+      </section>
       <section className="mb-16">
         <div className="container flex items-center justify-between font-outfit">
           <h1 className="text-28px font-medium capitalize text-black">
@@ -144,9 +182,11 @@ const Home = () => {
           ) : allProductsError ? (
             <p>Error: {allProductsError.message}</p>
           ) : (
-            products.slice(0, 8).map((product) => (
-              <ProductCard product={product} key={product.item.tcin} />
-            ))
+            products
+              .slice(0, 8)
+              .map((product) => (
+                <ProductCard product={product} key={product.item.dpci} />
+              ))
           )}
         </div>
       </section>

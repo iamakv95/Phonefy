@@ -6,11 +6,14 @@ import FooterCopyright from "./FooterCopyright";
 import FooterNewsletter from "./FooterNewsletter";
 import MobileMenu from "./MobileMenu";
 import HeaderSearch from "./HeaderSearch";
+import HomeSlider from "./HomeSlider";
 import ProductSlider from "./ProductSlider";
 import HeroSlideCard from "../components/cards/HeroSlideCard";
 import ProductCard from "../components/cards/ProductCard";
 import ProductImageCard from "../components/cards/ProductImageCard";
 import RatingsCard from "../components/cards/RatingsCard";
+import OfferCard from "../components/cards/OfferCard";
+import ProductOfferCard from "../components/cards/ProductOfferCard";
 
 export {
   Header,
@@ -23,6 +26,10 @@ export {
   FooterCopyright,
   ProductSlider,
   ProductCard,
+  HomeSlider,
+  OfferCard,
+  ProductOfferCard,
   HeroSlideCard,
-  ProductImageCard,RatingsCard
+  ProductImageCard,
+  RatingsCard,
 };

@@ -24,6 +24,7 @@ export default {
         "12px": ".77rem",
         "12px": ".85rem",
         "24px": "1.5rem",
+        "50px": "3.3rem",
       },
       colors: {
         black: "#1d2128",

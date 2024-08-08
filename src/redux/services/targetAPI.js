@@ -26,7 +26,6 @@ export const targetAPI = createApi({
     getAllReviews: builder.query({ query: () => "reviews/v2/list" }),
     getAllCategories: builder.query({ query: () => "categories/v2/list",
       transformResponse: (response) => {
-        console.log("category Response:", response);
         return response;
       },
      }),

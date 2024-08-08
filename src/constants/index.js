@@ -12,6 +12,12 @@ import {
   home_featured_1,
   home_featured_2,
   home_featured_3,
+  homeGift,
+  home_offer,
+  home_slider_1,
+  home_slider_2,
+  home_slider_3,
+  homeCta,
   home_featured_4,
 } from "../assets";
 
@@ -31,9 +37,57 @@ export const navCategory = [
   { href: "/", label: "Audio" },
 ];
 
+export const homeSliders = [
+  {
+    id: "1",
+    imageURL: home_slider_1,
+    href: "/",
+    subTitle: "Appliances",
+    title: "Felly Fan",
+    descrpt: "The summer without wind has lost the whole world.",
+    btnTitle: "Shop Now",
+  },
+  {
+    id: "2",
+    imageURL: home_slider_2,
+    href: "/",
+    subTitle: "Introducing",
+    title: "Let's Decorate",
+    descrpt: "Excellent quality and exclusive natural materials ",
+    btnTitle: "Shop Now",
+  },
+  {
+    id: "3",
+    imageURL: home_slider_3,
+    href: "/",
+    subTitle: "Electronics",
+    title: "Drawsher",
+    descrpt: "Washing machine with dehumidifier",
+    btnTitle: "Shop Now",
+  },
+];
+
 export const newsletter = {
   titletop: "Get Exclusive Offers & Updates",
   titlebottom: "  Get recommendations, tips, updates, promotions and more.",
+};
+
+export const ctaOffer = {
+  imageURL: homeCta,
+  href: "/",
+  subTitle: "Kitchen & Dining",
+  title: "Make Every Meal Special",
+  descrpt: "Give your table a fresh fall look.",
+  btnTitle: "Explore Now",
+};
+
+export const giftOffer = {
+  imageURL: homeGift,
+  href: "/",
+  title: "Gift The Once You Love",
+  descrpt:
+    "Thoughtful gifts that everyone on your list will love. We guarantee smiles all around.",
+  btnTitle: "Shop All Gifts",
 };
 
 export const featuredOffer = [

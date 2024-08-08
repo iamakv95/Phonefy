@@ -57,7 +57,7 @@ const ProductCard = ({ product }) => {
   }, []);
 
   return (
-    <div className="flex flex-col font-outfit product_card group">
+    <div className="flex flex-col font-outfit product_card group relative">
       <div className="relative">
         <Link to={`/products/${product.id}`}>
           <img
@@ -73,7 +73,7 @@ const ProductCard = ({ product }) => {
       </div>
       <div className="px-2 py-1 flex flex-col gap-1 mt-3">
         <Link to={`/products/${product.id}`} className="text-11px text-black opacity-80 font-medium">
-          {product.item?.product_classification?.item_type?.name || "Unknown Type"}
+          {product.item?.product_classification?.item_type?.name || "No Category"}
         </Link>
         <Link to={`/products/${product.id}`} className="text-13px font-medium mt-1 text-black leading-tight">
           {truncatedTitle}
@@ -98,8 +98,8 @@ const ProductCard = ({ product }) => {
         ref={hiddenDivRef}
         className="hidden absolute bottom-0 w-full px-2 flex-col gap-1 shadow-lg shadow-white bg-white py-2 z-20 group-hover:flex"
       >
-        <button className="capitalize text-white bg-red rounded-md py-2">
-          Add to Cart
+        <button className={`capitalize text-white ${product.fulfillment.sol_out === true ? 'bg-gray opacity-40' : 'bg-red'} rounded-md py-2`}>
+         {product.fulfillment.sol_out === true ? 'Out Of Stcok' : 'Add To Cart'}
         </button>
       </div>
     </div>
