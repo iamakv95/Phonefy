@@ -97,7 +97,7 @@ const Home = () => {
               </Link>
               <Link
                 to={item.href}
-                className="text-center text-24px max-lg:text-18px leading-tight font-medium"
+                className="text-center text-24px max-lg:text-14px leading-tight font-medium"
               >
                 {item.title}
               </Link>
@@ -144,7 +144,7 @@ const Home = () => {
                 </Link>
                 <Link
                   to={item.href}
-                  className="text-center text-18px max-lg:text-14px leading-tight font-medium"
+                  className="text-center text-18px max-lg:text-13px leading-tight font-medium"
                 >
                   {item.name}
                 </Link>

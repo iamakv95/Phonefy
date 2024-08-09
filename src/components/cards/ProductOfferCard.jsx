@@ -52,7 +52,7 @@ const ProductOfferCard = () => {
         <div className="max-md:w-full">
           <h3 className="text-18px max-lg:text-14px font-semibold mb-1">{currentProduct.title}</h3>
           <p className="max-lg:text-12px">{currentProduct.descrpt}</p>
-          <button className="text-black text-12px py-2 px-4 underline underline-offset-4 transition duration-200">
+          <button className="text-black text-13px py-2 px-4 underline underline-offset-4 transition duration-200">
             Shop Now
           </button>
         </div>

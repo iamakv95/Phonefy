@@ -78,7 +78,7 @@ const ProductCard = ({ product }) => {
           />
         </Link>
         {discountPercentage > 0 && (
-          <span className="absolute top-2 left-2 bg-accent rounded-md text-red text-11px font-bold z-20 px-2 py-1">
+          <span className="absolute top-2 left-2 bg-accent rounded-md text-red text-12px font-bold z-20 px-2 py-1">
             -{discountPercentage.toFixed(0)}%
           </span>
         )}
@@ -96,7 +96,7 @@ const ProductCard = ({ product }) => {
         </Link>
         <Link
           to={`/products/${product.id}`}
-          className="text-13px max-lg:text-12px font-medium mt-1 text-black leading-tight"
+          className="text-14px max-lg:text-13px font-medium mt-1 text-black leading-tight"
         >
           {truncatedTitle}
         </Link>
