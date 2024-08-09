@@ -13,6 +13,8 @@ import home_featured_4 from "./images/home_featured_4.png";
 import home_offer from "./images/home_offer.png";
 import homeGift from "./images/gift.jpg";
 import homeCta from "./images/cta.jpg";
+import phone from "./images/phone.png";
+import audio from "./images/audio.png";
 
 export {
   fast,
@@ -30,4 +32,6 @@ export {
   home_slider_1,
   home_slider_2,
   home_slider_3,
+  audio,
+  phone,
 };

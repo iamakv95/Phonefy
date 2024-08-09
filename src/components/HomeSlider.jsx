@@ -18,9 +18,9 @@ const HomeSlider = () => {
       className="mySwiper h-full rounded-lg"
     >
       {homeSliders.map((slide) => (
-        <SwiperSlide key={slide.id} className="h-full">
+        <SwiperSlide key={slide.id} className="h-auto">
           <div
-            className={`flex h-full flex-col justify-start gap-1 p-10`}
+            className={`flex flex-1 bg-cover min-h-[400px] w-full bg-no-repeat h-full flex-col justify-start gap-1 p-10`}
             style={{ backgroundImage: `url(${slide.imageURL})` }}
           >
             <h5 className="text-12px font-semibold uppercase text-black">
@@ -29,7 +29,7 @@ const HomeSlider = () => {
             <h3 className="text-50px leading-tight font-bold capitalize text-black">
               {slide.title}
             </h3>
-            <p className="text-12px font-normal leading-tight w-1/3 text-black">
+            <p className="text-12px font-normal leading-tight w-1/3 max-lg:w-1/2 max-md:w-[80%] text-black">
               {slide.descrpt}
             </p>
             <Link

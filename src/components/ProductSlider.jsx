@@ -28,7 +28,7 @@ const ProductSlider = ({products}) => {
           spaceBetween: 50,
         },
       }}
-      className="mySwiper px-12"
+      className="mySwiper px-12 max-lg:px-0"
     >
       {products.length > 0 ? (
         products.map((product, ind) => (

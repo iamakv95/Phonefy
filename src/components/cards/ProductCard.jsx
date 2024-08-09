@@ -1,7 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import gsap from "gsap";
-import {RatingsCard} from "../../components"
+import { RatingsCard } from "../../components";
+import { GoHeart, GoHeartFill } from "react-icons/go";
 
 const ProductCard = ({ product }) => {
   const hiddenDivRef = useRef(null);
@@ -15,8 +16,14 @@ const ProductCard = ({ product }) => {
   const title = product.item?.product_description?.title || "";
   const truncatedTitle = title.length > 40 ? title.slice(0, 40) + "..." : title;
 
-  const rating = product.parent?.ratings_and_reviews?.statistics?.rating?.average || product.ratings_and_reviews?.statistics?.rating?.average || 0;
-  const ratingCount = product.parent?.ratings_and_reviews?.statistics?.rating?.count || product.ratings_and_reviews?.statistics?.rating?.count || 0;
+  const rating =
+    product.parent?.ratings_and_reviews?.statistics?.rating?.average ||
+    product.ratings_and_reviews?.statistics?.rating?.average ||
+    0;
+  const ratingCount =
+    product.parent?.ratings_and_reviews?.statistics?.rating?.count ||
+    product.ratings_and_reviews?.statistics?.rating?.count ||
+    0;
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -43,13 +50,15 @@ const ProductCard = ({ product }) => {
         };
 
         const parent = hiddenDiv.parentElement;
-        parent.addEventListener("mouseenter", handleHover);
-        parent.addEventListener("mouseleave", handleHoverOut);
+        if (parent) {
+          parent.addEventListener("mouseenter", handleHover);
+          parent.addEventListener("mouseleave", handleHoverOut);
 
-        return () => {
-          parent.removeEventListener("mouseenter", handleHover);
-          parent.removeEventListener("mouseleave", handleHoverOut);
-        };
+          return () => {
+            parent.removeEventListener("mouseenter", handleHover);
+            parent.removeEventListener("mouseleave", handleHoverOut);
+          };
+        }
       }
     });
 
@@ -61,7 +70,10 @@ const ProductCard = ({ product }) => {
       <div className="relative">
         <Link to={`/products/${product.id}`}>
           <img
-            src={product.item?.enrichment?.images?.primary_image_url || "/placeholder.jpg"}
+            src={
+              product.item?.enrichment?.images?.primary_image_url ||
+              "/placeholder.jpg"
+            }
             alt={product.item?.product_description?.title || "Product image"}
           />
         </Link>
@@ -70,12 +82,22 @@ const ProductCard = ({ product }) => {
             -{discountPercentage.toFixed(0)}%
           </span>
         )}
+        <button className="group-hover:block hidden absolute top-2 right-1">
+          <GoHeart className="fill-red" />
+        </button>
       </div>
       <div className="px-2 py-1 flex flex-col gap-1 mt-3">
-        <Link to={`/products/${product.id}`} className="text-11px text-black opacity-80 font-medium">
-          {product.item?.product_classification?.item_type?.name || "No Category"}
+        <Link
+          to={`/products/${product.id}`}
+          className="text-11px text-black opacity-80 font-medium"
+        >
+          {product.item?.product_classification?.item_type?.name ||
+            "No Category"}
         </Link>
-        <Link to={`/products/${product.id}`} className="text-13px font-medium mt-1 text-black leading-tight">
+        <Link
+          to={`/products/${product.id}`}
+          className="text-13px max-lg:text-12px font-medium mt-1 text-black leading-tight"
+        >
           {truncatedTitle}
         </Link>
       </div>
@@ -92,14 +114,25 @@ const ProductCard = ({ product }) => {
             ${reg_retail.toFixed(2)}
           </span>
         </p>
-        <div className="flex items-center gap-1"><RatingsCard rating={rating} /><span className="text-12px text-gray">({ratingCount})</span></div>
+        <div className="flex items-center gap-1">
+          <RatingsCard rating={rating} />
+          <span className="text-12px text-gray">({ratingCount})</span>
+        </div>
       </div>
       <div
         ref={hiddenDivRef}
         className="hidden absolute bottom-0 w-full px-2 flex-col gap-1 shadow-lg shadow-white bg-white py-2 z-20 group-hover:flex"
       >
-        <button className={`capitalize text-white ${product.fulfillment.sol_out === true ? 'bg-gray opacity-40' : 'bg-red'} rounded-md py-2`}>
-         {product.fulfillment.sol_out === true ? 'Out Of Stcok' : 'Add To Cart'}
+        <button
+          className={`capitalize text-white ${
+            product.fulfillment.sol_out === true
+              ? "bg-gray opacity-40"
+              : "bg-red"
+          } rounded-md py-2`}
+        >
+          {product.fulfillment.sol_out === true
+            ? "Out Of Stock"
+            : "Add To Cart"}
         </button>
       </div>
     </div>

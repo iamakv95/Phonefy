@@ -18,6 +18,8 @@ import {
   home_slider_2,
   home_slider_3,
   homeCta,
+  phone,
+  audio,
   home_featured_4,
 } from "../assets";
 
@@ -63,6 +65,33 @@ export const homeSliders = [
     subTitle: "Electronics",
     title: "Drawsher",
     descrpt: "Washing machine with dehumidifier",
+    btnTitle: "Shop Now",
+  },
+];
+
+export const homeOfferSliders = [
+  {
+    id: "1",
+    imageURL: home_offer,
+    href: "/",
+    title: "Nike Shoes",
+    descrpt: "Upto 40% off on Shoes.",
+    btnTitle: "Shop Now",
+  },
+  {
+    id: "2",
+    imageURL: phone,
+    href: "/",
+    title: "5G Smartphones",
+    descrpt: "Upto 60% off on smartphones.",
+    btnTitle: "Shop Now",
+  },
+  {
+    id: "3",
+    imageURL: audio,
+    href: "/",
+    title: "Smart Audio",
+    descrpt: "Upto 50% off on Audio Products.",
     btnTitle: "Shop Now",
   },
 ];
