@@ -15,7 +15,7 @@ const FooterNewsletter = () => {
       <h3 className="text-28px font-bold text-black">
         {newsletter.titletop}
       </h3>
-      <p className="text-12px font-outfit text-black font-normal py-2">
+      <p className="text-14px font-outfit text-black font-normal py-2">
         {newsletter.titlebottom}
       </p>
       <Formik
@@ -36,7 +36,7 @@ const FooterNewsletter = () => {
                 type="email"
                 name="email"
                 placeholder="Enter your email address"
-                className={`w-full py-4 px-2 shadow-custom-black hover:shadow-hover-black placeholder:opacity-70 transition-shadow text-opacity-85 bg-white text-black text-13px placeholder:text-12px font-semibold placeholder:text-black outline-none duration-300 ${
+                className={`w-full py-4 px-2 shadow-custom-black hover:shadow-hover-black placeholder:opacity-70 transition-shadow text-opacity-85 bg-white text-black text-14px placeholder:text-13px font-semibold placeholder:text-black outline-none duration-300 ${
                   errors.email && touched.email ? "border border-red" : ""
                 }`}
               />

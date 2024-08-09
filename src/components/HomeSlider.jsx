@@ -26,7 +26,7 @@ const HomeSlider = () => {
             <h5 className="text-12px font-semibold uppercase text-black">
               {slide.subTitle}
             </h5>
-            <h3 className="text-50px leading-tight font-bold capitalize text-black">
+            <h3 className="text-50px max-lg:text-4xl leading-tight font-bold capitalize text-black">
               {slide.title}
             </h3>
             <p className="text-12px font-normal leading-tight w-1/3 max-lg:w-1/2 max-md:w-[80%] text-black">
