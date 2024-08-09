@@ -7,6 +7,8 @@ export default {
         center: true,
         padding: {
           DEFAULT: "2rem",
+          md: ".5rem",
+          lg: "1rem", 
         },
         screens: {
           xl: "1360px",
