@@ -33,7 +33,7 @@ const FooterMenus = () => {
               onMouseLeave={handleMouseLeave}
             >
               {item.label}
-              <span className="border-bottom absolute left-0 bottom-[-3px] bg-black h-[2px] w-0"></span>
+              <span className="border-bottom absolute left-0 bottom-[-1px] bg-black h-[1px] w-0"></span>
             </Link>
           ))}
         </div>
@@ -46,8 +46,6 @@ const FooterMenus = () => {
               key={item.key}
               href={item.href}
               className="p-3 border border-black text-24px hover:border-gray transition-all duration-300"
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
             >
               <item.iconURL />
             </a>

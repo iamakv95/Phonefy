@@ -15,6 +15,7 @@ import homeGift from "./images/gift.jpg";
 import homeCta from "./images/cta.jpg";
 import phone from "./images/phone.png";
 import audio from "./images/audio.png";
+import store from "./images/store.png";
 
 export {
   fast,
@@ -34,4 +35,5 @@ export {
   home_slider_3,
   audio,
   phone,
+  store,
 };
