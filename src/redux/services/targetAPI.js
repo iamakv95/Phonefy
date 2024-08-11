@@ -24,13 +24,17 @@ export const targetAPI = createApi({
       },
     }),
     getAllReviews: builder.query({ query: () => "reviews/v2/list" }),
-    getAllCategories: builder.query({ query: () => "categories/v2/list",
+    getAllCategories: builder.query({
+      query: () => "categories/v2/list",
       transformResponse: (response) => {
         return response;
       },
-     }),
+    }),
     getProductsByCategory: builder.query({
       query: (category) => `categories/v2/list?category=${category}`,
+    }),
+    getProductsDetails: builder.query({
+      query: (id) => `products/v3/get-details?tcin=${id}&store_id=911`,
     }),
     getProductBySearch: builder.query({
       query: (searchTerm) => `auto-complete?q=${searchTerm}`,
@@ -40,6 +44,7 @@ export const targetAPI = createApi({
 
 export const {
   useGetAllProductsQuery,
+  useGetProductsDetailsQuery,
   useGetFeaturedProductsQuery,
   useGetAllReviewsQuery,
   useGetAllCategoriesQuery,

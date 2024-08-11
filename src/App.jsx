@@ -6,7 +6,7 @@ import {
   Route,
 } from "react-router-dom";
 
-import { Home, Cart, Error ,Search ,SingleProduct, Shop} from "./pages";
+import { Home, Cart, Error, Search, SingleProduct, Shop } from "./pages";
 import { MainLayout } from "./layouts";
 
 const App = () => {

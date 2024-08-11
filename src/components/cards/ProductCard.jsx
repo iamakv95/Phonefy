@@ -5,6 +5,13 @@ import { RatingsCard } from "../../components";
 import { GoHeart, GoHeartFill } from "react-icons/go";
 
 const ProductCard = ({ product }) => {
+  const productId = product.item?.tcin;
+
+  if (!productId) {
+    console.warn("Product ID is missing:", product);
+    return null;
+  }
+
   const hiddenDivRef = useRef(null);
 
   const reg_retail = parseFloat(product.price?.reg_retail) || 0;
@@ -68,7 +75,7 @@ const ProductCard = ({ product }) => {
   return (
     <div className="flex flex-col font-outfit product_card group relative">
       <div className="relative">
-        <Link to={`/products/${product.id}`}>
+        <Link to={`/products/${productId}`}>
           <img
             src={
               product.item?.enrichment?.images?.primary_image_url ||
@@ -88,14 +95,14 @@ const ProductCard = ({ product }) => {
       </div>
       <div className="px-2 py-1 flex flex-col gap-1 mt-3">
         <Link
-          to={`/products/${product.id}`}
+          to={`/products/${productId}`}
           className="text-11px text-black opacity-80 font-medium"
         >
           {product.item?.product_classification?.item_type?.name ||
             "No Category"}
         </Link>
         <Link
-          to={`/products/${product.id}`}
+          to={`/products/${productId}`}
           className="text-14px max-lg:text-13px font-medium mt-1 text-black leading-tight"
         >
           {truncatedTitle}

@@ -2,26 +2,44 @@ import React from "react";
 import { AiOutlineClockCircle, AiOutlineTruck } from "react-icons/ai";
 import RatingsCard from "./cards/RatingsCard";
 import { BiMinus, BiPlus } from "react-icons/bi";
-import { store } from "../assets";
 
-const SingleProductDetails = () => {
-  const rating = 4 || 0;
-  const ratingCount = 4 || 0;
+const SingleProductDetails = ({ product }) => {
+  const reg_retail = parseFloat(product?.product?.price?.reg_retail) || 0;
+  const currentPrice = parseFloat(product?.product?.price?.current_retail) || 0;
+  const discountPercentage = reg_retail
+    ? ((reg_retail - currentPrice) / reg_retail) * 100
+    : 0;
+
+  const savingPrice = reg_retail - currentPrice;
+
+  const rating =
+    product?.product?.ratings_and_reviews?.statistics?.rating?.average || 0;
+  const ratingCount =
+    product?.product?.ratings_and_reviews?.statistics?.review_count || 0;
+
   return (
     <>
-      <span className=" bg-red text-white w-max text-12px font-bold z-20 px-2 py-1">
-        -10%
-      </span>
+      {discountPercentage > 0 && (
+        <span className=" bg-red text-white w-max text-12px font-bold z-20 px-2 py-1">
+          -{discountPercentage.toFixed(0)}%
+        </span>
+      )}
       <h1 className="text-24px font-medium py-2 leading-tight">
-        Camille Anthracite Italian Dining Chair
+        {product?.product?.item?.product_description?.title}
       </h1>
       <div className="flex items-center gap-8 ">
         <p className="text-black text-13px font-medium">
-          <span className="opacity-70">in</span> <span>Category</span>
+          <span className="opacity-70">in </span>
+          <span className="text-12px">
+            {product?.product?.item?.product_classification
+              ?.product_subtype_name || "Uncategoried"}
+          </span>
         </p>
         <p className="text-black text-12px font-medium">
-          <span className="opacity-70">Sku:</span>
-          <span className="opacity-100">woo-tshirt</span>
+          <span className="opacity-70">Sku: </span>
+          <span className="opacity-100">
+            {product?.product.item?.dpci || "No SKU Found"}
+          </span>
         </p>
         <div className="flex items-center gap-1 ml-8">
           <RatingsCard rating={rating} />
@@ -30,16 +48,26 @@ const SingleProductDetails = () => {
       </div>
       <div className="flex justify-between mt-6 items-end border-b border-black border-opacity-15 pb-2">
         <div className="flex flex-col gap-2">
-          <p className="text-28px font-medium text-black">$190.00</p>
+          <p className="text-28px font-medium text-black">${currentPrice}</p>
           <p className="flex items-center gap-3">
             <span className="text-16px line-through font-normal text-black">
-              $210.00
+              ${reg_retail}
             </span>
-            <span className="text-16px font-normal text-red">Save: $20.00</span>
+            <span className="text-16px font-normal text-red">
+              Save: ${savingPrice.toFixed(2)}
+            </span>
           </p>
         </div>
-        <p className="text-green-400 font-medium text-14px">
-          Available in stock
+        <p
+          className={`${
+            product?.fulfillment?.sold_out == true
+              ? "text-red"
+              : "text-green-500"
+          } font-medium text-14px`}
+        >
+          {product?.fulfillment?.sold_out == true
+            ? "Out of Stock"
+            : "Available in stock"}
         </p>
       </div>
       <div className="flex items-center gap-10 mt-10">
@@ -52,24 +80,30 @@ const SingleProductDetails = () => {
             <BiPlus />
           </button>
         </div>
-        <button className="bg-red py-2 px-5 text-white ">Add To Cart</button>
+        <button className="bg-red hover:bg-hoverRed py-2 px-5 text-white ">
+          Add To Cart
+        </button>
       </div>
-      <div className="flex items-center justify-between shadow-custom-black px-5 py-4 mt-10">
-        <div className="flex items-center gap-4">
-          <img
-            src={store}
-            alt=""
-            className="rounded-full w-10 h-10 object-cover"
-          />
-          <div className="text-13px">
-            <span className="text-gray">Store</span>
-            <p className="text-black font-medium">Zone Store</p>
-          </div>
-        </div>
-        <div className="flex items-center gap-1 ml-8">
-          <RatingsCard rating={rating} />
-          <span className="text-12px text-gray">({ratingCount})</span>
-        </div>
+      <div className="flex gap-5  flex-col justify-between py-4 mt-10">
+        <h4 className="capitalize text-24px border-b-2 w-max border-black font-medium leading-tight">
+          Highlights
+        </h4>
+        {product?.product?.item?.product_description?.bullet_descriptions &&
+        product?.product?.item?.product_description?.bullet_descriptions
+          .length > 0 ? (
+          <ul>
+            {product?.product?.item?.product_description?.bullet_descriptions.map(
+              (description, index) => (
+                <li
+                  key={index}
+                  dangerouslySetInnerHTML={{ __html: description }}
+                />
+              )
+            )}
+          </ul>
+        ) : (
+          <p>No additional details available</p>
+        )}
       </div>
       <div className="mt-10 border border-gray border-opacity-10 px-5 py-1 text-13px text-black text-opacity-70">
         <div className="flex justify-between items-center border-b border-gray border-opacity-10 py-2">

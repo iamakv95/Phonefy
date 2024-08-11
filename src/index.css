@@ -74,4 +74,20 @@
   object-fit: contain;
 } */
 
+.productImage_main_slider {
+  padding-block: 20px;
+}
 
+.productImage_main_slider .swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.productImage_slider_thumbs {
+  padding-block: 20px;
+}
+
+.productImage_slider_thumbs .swiper-slide {
+  cursor: pointer;
+}

@@ -11,11 +11,7 @@ import {
   ProductOfferCard,
   ProductSlider,
 } from "../components";
-import {
-  featuredOffer,
-  ctaOffer,
-  giftOffer,
-} from "../constants";
+import { featuredOffer, ctaOffer, giftOffer } from "../constants";
 
 const Home = () => {
   const {
@@ -33,7 +29,8 @@ const Home = () => {
   const products = allProductsData?.data?.search?.products || [];
   const categories =
     allCategoriesData?.slots?.[1200]?.content.taxonomy_nodes || [];
-    
+  console.log("products", products);
+
   return (
     <>
       <section className="mb-16 mt-4 ">
@@ -42,7 +39,7 @@ const Home = () => {
             <HomeSlider />
           </div>
           <div className="w-1/3 relative items-center justify-center bg-accent flex shadow-md h-full rounded-lg p-10 max-md:p-6 max-lg:w-full">
-             <ProductOfferCard />
+            <ProductOfferCard />
           </div>
         </div>
       </section>
