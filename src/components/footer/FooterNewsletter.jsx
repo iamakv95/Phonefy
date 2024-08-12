@@ -2,7 +2,7 @@ import React from "react";
 import { BiArrowBack } from "react-icons/bi";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
-import { newsletter } from "../constants";
+import { newsletter } from "../../constants";
 
 const FooterNewsletter = () => {
     const validationSchema = Yup.object({

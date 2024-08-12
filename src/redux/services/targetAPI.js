@@ -18,7 +18,7 @@ export const targetAPI = createApi({
       },
     }),
     getFeaturedProducts: builder.query({
-      query: () => "/products/v2/list-recommended?tcins=54191097&store_id=911",
+      query: (id) => `/products/v2/list-recommended?tcins=${id}&store_id=911`,
       transformResponse: (response) => {
         return response;
       },

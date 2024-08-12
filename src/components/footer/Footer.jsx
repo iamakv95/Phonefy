@@ -1,5 +1,5 @@
 import React from "react";
-import {FooterNewsletter,FooterFeatures,FooterMenus,FooterCopyright } from "../components"
+import {FooterNewsletter,FooterFeatures,FooterMenus,FooterCopyright } from "../../components"
 
 
 const Footer = () => {

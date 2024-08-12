@@ -1,5 +1,5 @@
 import React from "react";
-import { homeSliders } from "../constants";
+import { homeSliders } from "../../constants";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, EffectFade } from "swiper/modules";
 import "swiper/css";

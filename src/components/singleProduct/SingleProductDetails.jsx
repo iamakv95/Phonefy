@@ -1,11 +1,11 @@
 import React from "react";
 import { AiOutlineClockCircle, AiOutlineTruck } from "react-icons/ai";
-import RatingsCard from "./cards/RatingsCard";
+import {RatingsCard} from "../../components";
 import { BiMinus, BiPlus } from "react-icons/bi";
 
 const SingleProductDetails = ({ product }) => {
-  const reg_retail = parseFloat(product?.product?.price?.reg_retail) || 0;
-  const currentPrice = parseFloat(product?.product?.price?.current_retail) || 0;
+  const reg_retail = parseFloat(product?.product?.price?.reg_retail) || parseFloat(product?.product?.price?.current_retail_max) || 0;
+  const currentPrice = parseFloat(product?.product?.price?.current_retail) || parseFloat(product?.product?.price?.current_retail_min) || 0;
   const discountPercentage = reg_retail
     ? ((reg_retail - currentPrice) / reg_retail) * 100
     : 0;
@@ -30,7 +30,7 @@ const SingleProductDetails = ({ product }) => {
       <div className="flex items-center gap-8 ">
         <p className="text-black text-13px font-medium">
           <span className="opacity-70">in </span>
-          <span className="text-12px">
+          <span className="text-12px capitalize">
             {product?.product?.item?.product_classification
               ?.product_subtype_name || "Uncategoried"}
           </span>
@@ -84,27 +84,25 @@ const SingleProductDetails = ({ product }) => {
           Add To Cart
         </button>
       </div>
-      <div className="flex gap-5  flex-col justify-between py-4 mt-10">
-        <h4 className="capitalize text-24px border-b-2 w-max border-black font-medium leading-tight">
-          Highlights
-        </h4>
-        {product?.product?.item?.product_description?.bullet_descriptions &&
-        product?.product?.item?.product_description?.bullet_descriptions
-          .length > 0 ? (
-          <ul>
-            {product?.product?.item?.product_description?.bullet_descriptions.map(
-              (description, index) => (
+      {product?.product?.item?.product_description?.soft_bullets?.bullets && (
+        <div className="flex gap-5  flex-col justify-between py-4 mt-10">
+          <h4 className="capitalize text-24px border-b-2 w-max border-black font-medium leading-tight">
+            Highlights
+          </h4>
+
+          <ul className="ml-3">
+            {product?.product?.item?.product_description?.soft_bullets?.bullets.map(
+              (bullet, index) => (
                 <li
+                  className="list-disc ml-2"
                   key={index}
-                  dangerouslySetInnerHTML={{ __html: description }}
+                  dangerouslySetInnerHTML={{ __html: bullet }}
                 />
               )
             )}
           </ul>
-        ) : (
-          <p>No additional details available</p>
-        )}
-      </div>
+        </div>
+      )}
       <div className="mt-10 border border-gray border-opacity-10 px-5 py-1 text-13px text-black text-opacity-70">
         <div className="flex justify-between items-center border-b border-gray border-opacity-10 py-2">
           <p className="flex items-center gap-1">

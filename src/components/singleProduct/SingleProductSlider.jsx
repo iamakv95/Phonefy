@@ -15,10 +15,6 @@ const SingleProductSlider = ({ product }) => {
     product?.product?.item?.enrichment?.image_info?.alternate_images;
 
   const allImages = [primaryImage, ...alternateImages];
-  console.log("primary image", primaryImage);
-  console.log("alternate image", alternateImages);
-  console.log("all image", allImages);
-  console.log("thumb", thumbsSwiper);
 
   return (
     <>

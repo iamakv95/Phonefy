@@ -1,8 +1,8 @@
 import React, { useEffect} from "react";
 import { BiArrowBack, BiChevronRight, BiHelpCircle } from "react-icons/bi";
-import mobileLogo from "../assets/images/favicon.png";
+import mobileLogo from "../../assets/images/favicon.png";
 import { gsap } from "gsap";
-import { navCategory } from "../constants";
+import { navCategory } from "../../constants";
 import { Link } from "react-router-dom";
 
 const MobileMenu = ({menuOpened, setMenuOpened}) => {

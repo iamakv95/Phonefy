@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { navCategory, navLinks } from "../constants";
+import { navCategory, navLinks } from "../../constants";
 import { Link } from "react-router-dom";
-import {phonefy_dark} from "../assets";
+import {phonefy_dark} from "../../assets";
 import {
   BiMenu,
   BiMenuAltLeft,
 } from "react-icons/bi";
 import { gsap } from "gsap";
-import {MobileMenu, HeaderSearch} from "../components"
+import {MobileMenu, HeaderSearch} from "../../components"
 
 const Header = () => {
   const [menuOpened, setMenuOpened] = useState(false);

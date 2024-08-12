@@ -1,24 +1,56 @@
 import React from "react";
 import {
   BreadCrumbCard,
+  ProductSlider,
   SingleProductDetails,
   SingleProductSlider,
 } from "../components";
-import ProductInfoSectionCard from "../components/cards/ProductInfoSectionCard";
+import { ProductInfoSectionCard } from "../components";
 
 import { useParams } from "react-router-dom";
-import { useGetProductsDetailsQuery } from "../redux/services/targetAPI";
+import {
+  useGetProductsDetailsQuery,
+  useGetFeaturedProductsQuery,
+} from "../redux/services/targetAPI";
 
 const SingleProduct = () => {
   const { id } = useParams();
-  const { data, isLoading, error } = useGetProductsDetailsQuery(id);
+  const {
+    data: singleProduct,
+    isLoading: isLoadingProduct,
+    error: productError,
+  } = useGetProductsDetailsQuery(id);
+  const {
+    data: featuredProducts,
+    isLoading: isLoadingFeatured,
+    error: featuredError,
+  } = useGetFeaturedProductsQuery(id);
 
-  if (isLoading) return <p>loading</p>;
-  if (error) return <p>Error</p>;
+  if (isLoadingProduct || isLoadingFeatured)
+    return (
+      <div className="container flex items-center justify-center">
+        <p>loading</p>
+      </div>
+    );
+  if (productError || featuredError)
+    return (
+      <div className="container flex items-center justify-center">
+        <p>Error</p>
+      </div>
+    );
 
-  const product = data?.data;
+  const product = singleProduct?.data;
+  console.log("single product", product);
+  const products = featuredProducts?.data?.recommended_products?.products;
 
-  if (!product) return <p>no product found</p>;
+  console.log("related products", products);
+
+  if (!product)
+    return (
+      <div className="container flex items-center justify-center">
+        <p>no product found</p>
+      </div>
+    );
 
   return (
     <>
@@ -37,6 +69,14 @@ const SingleProduct = () => {
       </section>
       <section className="py-8 font-outfit">
         <ProductInfoSectionCard product={product} />
+      </section>
+      <section className="py-8 font-outfit">
+        <div className="container flex flex-col gap-8 items-center">
+          <h3 className="capitalize text-24px border-b-2 w-max border-black font-medium leading-tight">
+            Similar items
+          </h3>
+         <div className="w-full"> <ProductSlider products={products} /></div>
+        </div>
       </section>
     </>
   );

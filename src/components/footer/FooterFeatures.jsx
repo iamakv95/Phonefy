@@ -1,5 +1,5 @@
 import React from "react";
-import { footerFeatures } from "../constants";
+import { footerFeatures } from "../../constants";
 import { Link } from "react-router-dom";
 
 const FooterFeatures = () => {
