@@ -18,6 +18,7 @@ import ProductInfoSectionCard from "./singleProduct/ProductInfoSectionCard";
 import BreadCrumbCard from "./singleProduct/BreadCrumbCard";
 import SingleProductSlider from "./singleProduct/SingleProductSlider";
 import SingleProductDetails from "./singleProduct/SingleProductDetails";
+import RatingDetails from "./product/RatingDetails";
 
 export {
   Header,
@@ -26,6 +27,7 @@ export {
   SingleProductSlider,
   SingleProductDetails,
   HeaderSearch,
+  RatingDetails,
   FooterNewsletter,
   FooterFeatures,
   FooterMenus,

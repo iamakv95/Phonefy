@@ -1,6 +1,6 @@
 import React from "react";
 
-const RatingsCard = ({ rating }) => {
+const RatingsCard = ({ rating, customCSS }) => {
   const fullStars = Math.floor(rating);
   const halfStars = rating - fullStars >= 0.5 ? 1 : 0;
   const emptyStars = 5 - fullStars - halfStars;
@@ -10,12 +10,12 @@ const RatingsCard = ({ rating }) => {
   return (
     <div className="flex">
       {Array(fullStars).fill().map((_, index) => (
-        <svg key={`full-${index}`} className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 24 24">
+        <svg key={`full-${index}`} className={`${customCSS} text-yellow-400 fill-current`} viewBox="0 0 24 24">
           <path d={starPath} />
         </svg>
       ))}
       {halfStars === 1 && (
-        <svg className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 24 24">
+        <svg className={`${customCSS} text-yellow-400 fill-current`} viewBox="0 0 24 24">
           <defs>
             <clipPath id="halfStar">
               <rect x="0" y="0" width="12" height="24" />
@@ -26,7 +26,7 @@ const RatingsCard = ({ rating }) => {
         </svg>
       )}
       {Array(emptyStars).fill().map((_, index) => (
-        <svg key={`empty-${index}`} className="w-4 h-4 text-gray-300 fill-current" viewBox="0 0 24 24">
+        <svg key={`empty-${index}`} className={`${customCSS} text-gray-300 fill-current`} viewBox="0 0 24 24">
           <path d={starPath} fill="none" stroke="currentColor" />
         </svg>
       ))}

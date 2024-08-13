@@ -122,7 +122,7 @@ const ProductCard = ({ product }) => {
           </span>
         </p>
         <div className="flex items-center gap-1">
-          <RatingsCard rating={rating} />
+          <RatingsCard rating={rating} customCSS="w-4 h-4"/>
           <span className="text-12px text-gray">({ratingCount})</span>
         </div>
       </div>

@@ -23,7 +23,7 @@ export const targetAPI = createApi({
         return response;
       },
     }),
-    getAllReviews: builder.query({ query: () => "reviews/v2/list" }),
+    getAllReviews: builder.query({ query: (id) => `reviews/v2/list?reviewedId=${id}&sortBy=most_recent&size=30&page=0&hasOnlyPhotos=false&verifiedOnly=false` }),
     getAllCategories: builder.query({
       query: () => "categories/v2/list",
       transformResponse: (response) => {
@@ -51,3 +51,5 @@ export const {
   useGetProductsByCategoryQuery,
   useGetProductBySearchQuery,
 } = targetAPI;
+
+
