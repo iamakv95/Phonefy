@@ -45,26 +45,6 @@ const SingleProduct = () => {
 
   const ratings = product?.product?.ratings_and_reviews;
 
-  if (isLoadingProduct || isLoadingFeatured)
-    return (
-      <div className="container flex items-center justify-center">
-        <p>loading</p>
-      </div>
-    );
-  if (productError || featuredError)
-    return (
-      <div className="container flex items-center justify-center">
-        <p>Error</p>
-      </div>
-    );
-
-  if (!product)
-    return (
-      <div className="container flex items-center justify-center">
-        <p>no product found</p>
-      </div>
-    );
-
   return (
     <>
       <section className="py-3 border-t border-gray border-opacity-15 mt-1 font-outfit">
@@ -73,39 +53,52 @@ const SingleProduct = () => {
       <section className="py-4 font-outfit ">
         <div className="container flex gap-16">
           <div className="py-6 w-1/2 sticky top-0  h-max transition-all duration-500">
-            <SingleProductSlider product={product} />
+            {isLoadingProduct ? (
+              <p>Slider</p>
+            ) : productError ? (
+              <p>Error: {productError.message}</p>
+            ) : (
+              <SingleProductSlider product={product} />
+            )}
           </div>
           <div className="py-6 w-1/2 flex flex-col">
-            <SingleProductDetails product={product} />
+            {isLoadingProduct ? (
+              <p>Details</p>
+            ) : productError ? (
+              <p>Error: {productError.message}</p>
+            ) : (
+              <SingleProductDetails product={product} />
+            )}
           </div>
         </div>
       </section>
       <section className="py-8 font-outfit">
-        <ProductInfoSectionCard product={product} />
+        {isLoadingProduct ? (
+          <p>Additional info</p>
+        ) : productError ? (
+          <p>Error: {productError.message}</p>
+        ) : (
+          <ProductInfoSectionCard product={product} />
+        )}
       </section>
-      {products.length > 0 && (
-        <section className="py-8 font-outfit">
-          <div className="container flex flex-col gap-8 items-center">
-            <h3 className="capitalize text-24px border-b-2 w-max border-black font-medium leading-tight">
-              Similar items
-            </h3>
-            <div className="w-full">
+
+      <section className="py-8 font-outfit">
+        <div className="container flex flex-col gap-8 items-center">
+          <h3 className="capitalize text-24px border-b-2 w-max border-black font-medium leading-tight">
+            Similar items
+          </h3>
+          <div className="w-full">
+            {isLoadingFeatured ? (
+              <p>Similar Products</p>
+            ) : featuredError ? (
+              <p>Error: {featuredError.message}</p>
+            ) : (
               <ProductSlider products={products} />
-            </div>
+            )}
           </div>
-        </section>
-      )}
-      <section className="py-8 mb-8 font-outfit">
-        {(isLoadingReview && (
-          <div className="container flex items-center justify-center">
-            <p>loading</p>
-          </div>
-        )) ||
-          (reviewError && (
-            <div className="container flex items-center justify-center">
-              <p>Error</p>
-            </div>
-          ))}
+        </div>
+      </section>
+      <section className="py-8 font-outfit">
         <div className="container flex flex-col gap-8 items-center">
           <h3 className="capitalize text-24px border-b-2 w-max border-black font-medium leading-tight">
             Customer Reviews and Ratings
@@ -114,10 +107,10 @@ const SingleProduct = () => {
             <RatingDetails ratings={ratings} />
             <div className="flex flex-col items-center gap-1">
               <h3 className="text-28px leading-tight font-bold text-black">
-                {
+                {Math.round(
                   product?.product?.ratings_and_reviews?.statistics?.rating
-                    ?.average
-                }
+                    ?.average * 10
+                ) / 10}
               </h3>
               <RatingsCard
                 rating={
@@ -175,35 +168,37 @@ const SingleProduct = () => {
           </div>
         </div>
       </section>
-      <section>
+      <section className="font-outfit py-8">
         <div className="container">
-          <div className="flex items-center gap-3">
-         {product?.product?.ratings_and_reviews?.statistics?.rating?.secondary_averages.map((item)=>(
-             <div className="w-12">
-             <CircularProgressbar
-               styles={buildStyles({
-                 rotation: 0.05,
-                 strokeLinecap: "butt",
-                 textSize: "30px",
-                 pathTransitionDuration: 0.5,
-                 pathColor: "#16a34a",
-                 textColor: "#000",
-                 trailColor: "#7c818b26",
-                 backgroundColor: "#3e98s",
-               })}
-               value={
-                (item?.value/item?.range) * 100
-               }
-               text={`${roundUpToOneDecimal(item?.value)}`}
-             />
-           </div>
-         ))}
-            <div className="flex flex-col">
-              <p className=" leading-none font-medium text-opacity-90 text-black">
-                Value
-              </p>
-              <span className="text-14px mt-1">out of 5</span>
-            </div>
+          <div className="flex items-center justify-center gap-10">
+            {product?.product?.ratings_and_reviews?.statistics?.rating?.secondary_averages.map(
+              (item) => (
+                <div key={item.id} className="flex gap-3 items-center">
+                  <div className="w-12">
+                    <CircularProgressbar
+                      styles={buildStyles({
+                        rotation: 0.05,
+                        strokeLinecap: "butt",
+                        textSize: "30px",
+                        pathTransitionDuration: 0.5,
+                        pathColor: "#16a34a",
+                        textColor: "#000",
+                        trailColor: "#7c818b26",
+                        backgroundColor: "#3e98s",
+                      })}
+                      value={(item?.value / item?.range) * 100}
+                      text={`${Math.round(item?.value * 10) / 10}`}
+                    />
+                  </div>
+                  <div className="flex flex-col">
+                    <p className=" leading-none font-medium text-opacity-90 text-black">
+                      {item.label}
+                    </p>
+                    <span className="text-14px mt-1">out of 5</span>
+                  </div>
+                </div>
+              )
+            )}
           </div>
         </div>
       </section>
